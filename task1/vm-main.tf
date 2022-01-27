@@ -1,7 +1,14 @@
 #######################
 ## Windows VM - Main ##
 #######################
-
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "tamopstfstates"
+    storage_account_name = "atadjantfstatedevops"
+    container_name       = "terraformgithubexample"
+    key                  = "terraformgithubexample.tfstate"
+  }
+}
 # Get a Static Public IP
 resource "azurerm_public_ip" "windows-vm-ip" {
   name                = "${var.windows-vm-hostname}-ip"

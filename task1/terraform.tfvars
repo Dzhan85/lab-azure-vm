@@ -4,7 +4,7 @@
 company     = "saipem.lab"
 prefix      = "saipem"
 environment = "dev"
-location    = "northeurope"
+location    = "eastus2"
 description = "Deploy a Windows VM Scale Set"
 owner       = "Me"
 app_name    = "testing_task"
@@ -27,7 +27,7 @@ windows-admin-password = "S3cr3ts24"
 ##################
 # Authentication #
 ##################
-azure-subscription-id = "complete-this"
-azure-client-id       = "complete-this"
-azure-client-secret   = "complete-this"
-azure-tenant-id       = "complete-this"
+# azure-subscription-id = "complete-this"
+# azure-client-id       = "complete-this"
+# azure-client-secret   = "complete-this"
+# azure-tenant-id       = "complete-this"
