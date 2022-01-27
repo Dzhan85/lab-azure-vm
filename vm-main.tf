@@ -4,9 +4,9 @@
 terraform {
   backend "azurerm" {
     resource_group_name  = "tamopstfstates"
-    storage_account_name = "atadjantfstatedevops"
-    container_name       = "terraformgithubexample"
-    key                  = "terraformgithubexample.tfstate"
+    storage_account_name = "atadjantf"
+    container_name       = "atadjantfstatedevops"
+    key                  = "atadjantfstatedevops.tfstate"
   }
 }
 # Get a Static Public IP
