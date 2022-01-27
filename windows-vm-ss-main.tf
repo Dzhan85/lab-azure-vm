@@ -23,9 +23,9 @@ resource "azurerm_network_security_group" "web-nsg" {
     source_port_range          = "*"
     destination_port_range     = "3389"
     source_address_prefix      = "Internet"
-    destination_address_prefix = "*" 
+    destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "AllowHTTP"
     description                = "Allow HTTP"
@@ -36,9 +36,9 @@ resource "azurerm_network_security_group" "web-nsg" {
     source_port_range          = "*"
     destination_port_range     = "80"
     source_address_prefix      = "Internet"
-    destination_address_prefix = "*" 
+    destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "AllowHTTPS"
     description                = "Allow HTTPS"
@@ -49,12 +49,12 @@ resource "azurerm_network_security_group" "web-nsg" {
     source_port_range          = "*"
     destination_port_range     = "443"
     source_address_prefix      = "Internet"
-    destination_address_prefix = "*" 
+    destination_address_prefix = "*"
   }
 
   tags = {
     application = var.app_name
-    environment = var.environment 
+    environment = var.environment
   }
 }
 
@@ -70,12 +70,12 @@ resource "azurerm_windows_virtual_machine_scale_set" "web-ss" {
   location            = azurerm_resource_group.network-rg.location
   resource_group_name = azurerm_resource_group.network-rg.name
 
-  sku        = var.windows-vm-size
-  instances  = 1
+  sku       = var.windows-vm-size
+  instances = 1
 
-  computer_name_prefix  = var.windows-vm-hostname
-  admin_username        = var.windows-admin-username
-  admin_password        = var.windows-admin-password
+  computer_name_prefix = var.windows-vm-hostname
+  admin_username       = var.windows-admin-username
+  admin_password       = var.windows-admin-password
 
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
@@ -114,6 +114,6 @@ resource "azurerm_windows_virtual_machine_scale_set" "web-ss" {
 
   tags = {
     application = var.app_name
-    environment = var.environment 
+    environment = var.environment
   }
-} 
+}
