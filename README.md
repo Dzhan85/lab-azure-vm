@@ -31,6 +31,13 @@ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOU
 * Azure storage accounts require a globally unique name. To learn more about troubleshooting storage account names, see [Resolve errors for storage account names](https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/azure/azure-resource-manager/templates/error-storage-account-name).
 
 
+
+```
+az ad sp create-for-rbac --name "atadjan" --role Contributor --scopes /subscriptions/
+57ab0c1f-c5fe-4c46-9390-b37a07166880 --sdk-auth
+```
+
+
 #### Azure Service Principal
 
 Next we create a service principal that will be used by Terraform to authenticate to Azure **(Note down password)**

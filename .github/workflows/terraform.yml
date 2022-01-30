@@ -57,16 +57,13 @@ jobs:
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: 0.14.8
-        tf_actions_subcommand: 'applya'
-        tf_actions_working_dir: "./terraform"
+      run: terraform apply -auto-approve
+      # uses: hashicorp/terraform-github-actions@master
+      # with:
+      #   tf_actions_version: 0.14.8
+      #   tf_actions_subcommand: 'applya'
+      #   tf_actions_working_dir: "./terraform"
 
     - name: Terraform Destroy
       if: github.ref == 'refs/heads/main'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: 0.14.8
-        tf_actions_subcommand: 'applya'
-        tf_actions_working_dir: "./terraform"
+      run: terraform destroy -auto-approve
