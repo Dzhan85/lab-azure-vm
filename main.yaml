@@ -1,10 +1,6 @@
 ---
 - name: Include variables
   include_vars: main.yml
-
-# Install packages with win_chocolatey
-# Carbon has been problematic during Inspec Tests.
-# Note: do all carbon based powershell changes prior to Ansible
 - name: Ensure Carbon is not installed
   win_chocolatey:
     name: carbon
