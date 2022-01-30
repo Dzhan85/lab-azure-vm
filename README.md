@@ -1,13 +1,10 @@
-
 #Deployment
 
 ## Provision
 
-
 Before you use Azure Storage as a backend, you must create a storage account.
 
 Run the following commands or configuration to create an Azure storage account and container:
-
 
 ```
 #!/bin/bash
@@ -26,13 +23,25 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 ```
 
-
 ---
 
 **Key points:**
 
 * Public access is allowed to Azure storage account for storing Terraform state.
 * Azure storage accounts require a globally unique name. To learn more about troubleshooting storage account names, see [Resolve errors for storage account names](https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/azure/azure-resource-manager/templates/error-storage-account-name).
+
+
+#### Azure Service Principal
+
+Next we create a service principal that will be used by Terraform to authenticate to Azure **(Note down password)**
+
+`# Create Service Principal`
+
+```
+az ad sp create-for-rbac --name atadjantf2
+```
+
+Assign role assignment to this newly created service principal (RBAC) to the required subscription. Further details on RBAC roles is documented [here](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
 
 ## 3. Configure terraform backend state
 
@@ -54,7 +63,8 @@ ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME
 export ARM_ACCESS_KEY=$ACCOUNT_KEY
 ```
 
-
-
-
 Run the command `terraform init`, then `terraform apply` to configure the Azure storage account and container.
+
+https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/articles/terraform/store-state-in-azure-storage.md
+
+https://thomasthornton.cloud/2021/03/19/deploy-terraform-using-github-actions-into-azure/

@@ -4,6 +4,10 @@
 #   features {}
 # }
 
+# Bootstrapping Script
+# data "template_file" "tf-script" {
+#   template = file("setup.ps1")
+# }
 ## <https://www.terraform.io/docs/providers/azurerm/r/resource_group.html>
 resource "azurerm_resource_group" "rg" {
   name     = "TerraformTesting"
@@ -83,5 +87,21 @@ resource "azurerm_windows_virtual_machine" "example" {
     sku       = var.windows-2019-sku
     version   = "latest"
   }
+
+}
+
+resource "azurerm_virtual_machine_extension" "vmext" {
+  name                 = azurerm_windows_virtual_machine.example.name
+  virtual_machine_id   = azurerm_windows_virtual_machine.example.id
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.10"
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1",
+        "fileUris": ["https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"]
+    }
+SETTINGS
 
 }
