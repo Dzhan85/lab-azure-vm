@@ -1,6 +1,6 @@
 #Deployment
 
-## Provision script with GithubAction pipeline
+## 1. Provision script with GithubAction pipeline
 
 ## Before you use Azure Storage as a backend, you must create a storage account.
 
